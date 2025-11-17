@@ -1,11 +1,19 @@
 package edu.grinnell.csc207.soundsofsorting;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * A collection of indices into a Scale object.
  * These indices are the subject of the various sorting algorithms
  * in the program.
  */
 public class NoteIndices {
+
+    private List<Integer> notes;
+    private boolean[] isHighlighted;
+
     /**
      * @param n the size of the scale object that these indices map into
      */
@@ -20,13 +28,17 @@ public class NoteIndices {
      * @param n the size of the scale object that these indices map into
      */
     public void initializeAndShuffle(int n) {
-        // TODO: fill me in!
+        notes = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            notes.add(i);
+        }
+        isHighlighted = new boolean[n];
+        Collections.shuffle(notes);
     }
     
     /** @return the indices of this NoteIndices object */
     public Integer[] getNotes() { 
-        // TODO: fill me in!
-        return null;
+        return notes.toArray(new Integer[notes.size()]);
     }
     
     /**
@@ -34,7 +46,10 @@ public class NoteIndices {
      * @param index the index to highlight
      */
     public void highlightNote(int index) {
-        // TODO: fill me in
+        if(index < 0 || index >= isHighlighted.length){
+            throw new IllegalArgumentException();
+        }
+        isHighlighted[index] = true;
     }
     
     /**
@@ -42,12 +57,14 @@ public class NoteIndices {
      * @return true if the given index is highlighted
      */
     public boolean isHighlighted(int index) {
-        // TODO: fill me in
-        return false;
+        if(index < 0 || index >= isHighlighted.length){
+            throw new IllegalArgumentException();
+        }
+        return isHighlighted[index];
     }
     
     /** Clears all highlighted indices from this collection */
     public void clearAllHighlighted() {
-        // TODO: fill me in
+        isHighlighted = new boolean[notes.size()];
     }
 }

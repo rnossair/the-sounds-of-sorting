@@ -24,6 +24,29 @@ public class ArrayPanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        // TODO: fill me in!
+
+        Integer[] arr = notes.getNotes();
+        int width = getWidth();
+        int height = getHeight();
+        int length = arr.length - 1;
+
+        int barW = Math.max(width / length, 1);
+
+        for(int i = 0; i < length; i++){
+            int noteVal = arr[i];
+
+            int barH = (int) (((double) noteVal) / length * height);
+
+            int x = i * barW;
+            int y = height - barH;
+
+            if (notes.isHighlighted(i)) {
+                g.setColor(java.awt.Color.GREEN);
+            } else {
+                g.setColor(java.awt.Color.BLUE);
+            }
+
+            g.fillRect(x, y, barW, barH);
+        }
     }
 }
