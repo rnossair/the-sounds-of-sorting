@@ -194,6 +194,7 @@ public class Sorts {
         return null;
     }
 
+// cant be bothered of doing it rn
 
 
 
@@ -203,7 +204,6 @@ public class Sorts {
             if(arrList.get(i).isEmphasized()){
                 arrList.get(i).apply(ogArr);
             }
-            i++;
         }
         return;
     }

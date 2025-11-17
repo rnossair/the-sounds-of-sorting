@@ -43,7 +43,7 @@ public class ArrayPanel extends JPanel {
             if (notes.isHighlighted(i)) {
                 g.setColor(java.awt.Color.GREEN);
             } else {
-                g.setColor(java.awt.Color.BLUE);
+                g.setColor(java.awt.Color.CYAN);
             }
 
             g.fillRect(x, y, barW, barH);
