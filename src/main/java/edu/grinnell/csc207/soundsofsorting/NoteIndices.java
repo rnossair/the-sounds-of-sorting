@@ -1,8 +1,10 @@
 package edu.grinnell.csc207.soundsofsorting;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A collection of indices into a Scale object.
@@ -20,11 +22,17 @@ public class NoteIndices {
     public NoteIndices(int n) {
         initializeAndShuffle(n);
     }
-    
+
+    public void notesCopy(Integer[] arr) {
+        List<Integer> integerList = Arrays.asList(arr);
+        notes = integerList;
+    }
+
     /**
      * Reinitializes this collection of indices to map into a new scale object
-     * of the given size.  The collection is also shuffled to provide an
+     * of the given size. The collection is also shuffled to provide an
      * initial starting point for the sorting process.
+     * 
      * @param n the size of the scale object that these indices map into
      */
     public void initializeAndShuffle(int n) {
@@ -35,34 +43,35 @@ public class NoteIndices {
         isHighlighted = new boolean[n];
         Collections.shuffle(notes);
     }
-    
+
     /** @return the indices of this NoteIndices object */
-    public Integer[] getNotes() { 
+    public Integer[] getNotes() {
         return notes.toArray(new Integer[notes.size()]);
     }
-    
+
     /**
      * Highlights the given index of the note array
+     * 
      * @param index the index to highlight
      */
     public void highlightNote(int index) {
-        if(index < 0 || index >= isHighlighted.length){
+        if (index < 0 || index >= isHighlighted.length) {
             throw new IllegalArgumentException();
         }
         isHighlighted[index] = true;
     }
-    
+
     /**
      * @param index the index to check
      * @return true if the given index is highlighted
      */
     public boolean isHighlighted(int index) {
-        if(index < 0 || index >= isHighlighted.length){
+        if (index < 0 || index >= isHighlighted.length) {
             throw new IllegalArgumentException();
         }
         return isHighlighted[index];
     }
-    
+
     /** Clears all highlighted indices from this collection */
     public void clearAllHighlighted() {
         isHighlighted = new boolean[notes.size()];

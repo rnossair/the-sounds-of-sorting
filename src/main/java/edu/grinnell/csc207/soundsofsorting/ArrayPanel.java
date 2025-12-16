@@ -40,6 +40,9 @@ public class ArrayPanel extends JPanel {
             int x = i * barW;
             int y = height - barH;
 
+            g.setColor(java.awt.Color.WHITE);
+            g.fillRect(x, 0, barW, height);
+
             if (notes.isHighlighted(i)) {
                 g.setColor(java.awt.Color.GREEN);
             } else {

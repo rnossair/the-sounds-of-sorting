@@ -164,7 +164,11 @@ public class ControlPanel extends JPanel {
                             // affected indices logged in the event.
                             // 4. Highlight those affected indices.
                             notes.clearAllHighlighted();
-                            e.apply(notes.getNotes());
+                            Integer[] modArr = notes.getNotes();
+                            e.apply(modArr);
+                            notes.notesCopy(modArr);
+                            notes.clearAllHighlighted();
+                            panel.repaint();
                             List<Integer> affectedInd = e.getAffectedIndices();
                             for (int i = 0; i < affectedInd.size(); i++) {
                                 notes.highlightNote(affectedInd.get(i));
